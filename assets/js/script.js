@@ -1,18 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Smooth Scrolling for Navigation Links
-    document.querySelectorAll('nav ul li a').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute("href").substring(1);
-            document.getElementById(targetId).scrollIntoView({
-                behavior: "smooth"
-            });
-        });
-    });
-
-    // Form Validation
-// Form Submission & Validation for Google Sheets
-document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("contact-form");
 
     if (form) {
@@ -30,13 +16,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            const formData = { name, email, subject, message };
+            const formData = new FormData();
+            formData.append("name", name);
+            formData.append("email", email);
+            formData.append("subject", subject);
+            formData.append("message", message);
 
             try {
-                const response = await fetch("https://script.google.com/macros/s/AKfycbxdyxtPY6vIFOPhGC8aaC6_yG6qkF3blEVg9uPhwHmMcFslTigpHHk-j5eTGbTY0Jy14g/exec", {
+                const response = await fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
                     method: "POST",
-                    body: JSON.stringify(formData),
-                    headers: { "Content-Type": "application/json" }
+                    body: formData
                 });
 
                 if (response.ok) {
@@ -52,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
 
 
     // Back-to-Top Button
