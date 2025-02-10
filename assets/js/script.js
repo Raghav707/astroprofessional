@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            const formData = new FormData();
+            // ✅ Use URLSearchParams for Google Apps Script
+            const formData = new URLSearchParams();
             formData.append("name", name);
             formData.append("email", email);
             formData.append("subject", subject);
@@ -25,7 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
             try {
                 const response = await fetch("https://script.google.com/macros/s/AKfycbznIWNLF1vG294RaH_MTPHJmq4RORndlm8QDCubrCxWPfyMk2GHw2p29j1UoYVL3AEhnQ/exec", {
                     method: "POST",
-                    body: formData
+                    body: formData,
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" }
                 });
 
                 if (response.ok) {
@@ -40,11 +42,8 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-});
 
-
-
-    // Back-to-Top Button
+    // ✅ Back-to-Top Button
     const topButton = document.createElement("button");
     topButton.innerHTML = "▲";
     topButton.id = "back-to-top";
@@ -73,23 +72,22 @@ document.addEventListener("DOMContentLoaded", function () {
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    // Fade-in Animation using Intersection Observer (Better Performance)
-const fadeElements = document.querySelectorAll(".fade-in");
+    // ✅ Improved Fade-in Animation using Intersection Observer
+    const fadeElements = document.querySelectorAll(".fade-in");
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-        } else {
-            entry.target.classList.remove("visible"); // Ensures animation replays
-        }
-    });
-}, { threshold: 0.2 }); // Trigger when 20% of the element is visible
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            } else {
+                entry.target.classList.remove("visible"); // Ensures animation replays
+            }
+        });
+    }, { threshold: 0.2 }); // Trigger when 20% of the element is visible
 
-fadeElements.forEach(el => observer.observe(el));
+    fadeElements.forEach(el => observer.observe(el));
 
-
-    // Dark Mode Toggle
+    // ✅ Dark Mode Toggle
     const darkModeToggle = document.getElementById("dark-mode-toggle");
     const body = document.body;
 
