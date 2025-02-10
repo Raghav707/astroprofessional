@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Lighthouse Astro - Astrology Guidance</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="is-preload">
+
+    <!-- Header -->
+    <section id="header">
+        <header>
+            <span class="image avatar"><img src="images/avatar.jpg" alt="Astrology Avatar" /></span>
+            <h1 id="logo"><a href="#">Lighthouse Astro</a></h1>
+            <p>Guiding you through the stars <br /> and unlocking the secrets of the universe.</p>
+        </header>
+
+        <nav id="nav">
+            <ul>
+                <li><a href="#one" class="active">About</a></li>
+                <li><a href="#two">Astrology Services</a></li>
+                <li><a href="#three">Our Insights</a></li>
+                <li><a href="#four">Contact</a></li>
+            </ul>
+        </nav>
+
+        <footer>
+            <ul class="icons">
+                <li><a href="https://www.facebook.com/share/1EdR69F4Dr/" class="icon brands fa-facebook-f" target="_blank"><span class="label">Facebook</span></a></li>
+                <li><a href="https://x.com/lighthouseastro" class="icon brands fa-x-twitter" target="_blank"><span class="label">X</span></a></li>
+                <li><a href="https://www.instagram.com/lighthouseastro" class="icon brands fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+                <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=lighthouseastro@gmail.com&su=Astrology%20Inquiry&body=Hello,%20I%20want%20to%20know%20more%20about..."
+                       class="icon solid fa-envelope" target="_blank">
+                    <span class="label">Email</span></a>
+                </li>
+            </ul>
+        </footer>
+    </section>
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+        <div id="main">
+
+            <!-- About Us -->
+            <section id="one" class="fade-in">
+                <div class="image main" data-position="center">
+                    <img src="images/banner.jpg" alt="Astrology Banner" />
+                </div>
+                <div class="container">
+                    <header class="major">
+                        <h2>Welcome to Lighthouse Astro</h2>
+                        <p>Your trusted guide to astrology, horoscopes, and cosmic insights.</p>
+                    </header>
+                    <p>At Lighthouse Astro, we help you navigate life’s challenges with the wisdom of astrology. Whether it's understanding your birth chart, daily horoscope readings, or personalized guidance, we are here to illuminate your path.</p>
+                </div>
+            </section>
+
+            <!-- Astrology Services -->
+            <section id="two" class="fade-in">
+                <div class="container">
+                    <h3>Our Astrology Services</h3>
+                    <p>Discover how the stars influence your life with our expert insights.</p>
+                    <ul class="feature-icons">
+                        <li class="icon solid fa-star">Personalized Horoscope Readings</li>
+                        <li class="icon solid fa-moon">Daily & Weekly Predictions</li>
+                        <li class="icon solid fa-heart">Love & Relationship Compatibility</li>
+                        <li class="icon solid fa-briefcase">Career & Financial Guidance</li>
+                        <li class="icon solid fa-globe">Vedic & Western Astrology</li>
+                        <li class="icon solid fa-lightbulb">Spiritual & Energy Readings</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Our Insights -->
+            <section id="three" class="fade-in">
+                <div class="container">
+                    <h3>Our Astrological Insights</h3>
+                    <p>Unlock the wisdom of the cosmos with our latest astrology insights.</p>
+                    <div class="features">
+                        <article>
+                            <a href="#" class="image"><img src="images/pic01.jpg" alt="Zodiac Signs" /></a>
+                            <div class="inner">
+                                <h4>The Power of Your Zodiac Sign</h4>
+                                <p>Understand the strengths and challenges associated with your sun sign.</p>
+                            </div>
+                        </article>
+                        <article>
+                            <a href="#" class="image"><img src="images/pic02.jpg" alt="Planets & Houses" /></a>
+                            <div class="inner">
+                                <h4>How Planets Shape Your Life</h4>
+                                <p>Learn how planetary transits influence your destiny.</p>
+                            </div>
+                        </article>
+                        <article>
+                            <a href="#" class="image"><img src="images/pic03.jpg" alt="Tarot & Numerology" /></a>
+                            <div class="inner">
+                                <h4>Numerology & Tarot Readings</h4>
+                                <p>Decode the hidden messages in numbers and tarot cards.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Us -->
+            <section id="four" class="fade-in">
+                <div class="container">
+                    <h3>Contact Us</h3>
+                    <p>Have questions about your horoscope or astrological chart? Reach out to us!</p>
+                    <form id="contact-form">
+                        <div class="row gtr-uniform">
+                            <div class="col-6 col-12-xsmall">
+                                <input type="text" name="name" id="name" placeholder="Name" required />
+                            </div>
+                            <div class="col-6 col-12-xsmall">
+                                <input type="email" name="email" id="email" placeholder="Email" required />
+                            </div>
+                            <div class="col-12">
+                                <input type="text" name="subject" id="subject" placeholder="Subject" />
+                            </div>
+                            <div class="col-12">
+                                <textarea name="message" id="message" placeholder="Your Message" rows="6" style="resize: none;"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <ul class="actions">
+                                    <li><button type="submit" class="primary">Send Message</button></li>
+                                    <li><button type="reset">Reset Form</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                    <p id="response-message"></p>                    
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Dark Mode Toggle -->
+    <button id="dark-mode-toggle">🌙</button>
+
+    <!-- Footer -->
+    <section id="footer">
+        <div class="container">
+            <ul class="copyright">
+                <li>&copy; 2024 Lighthouse Astro. All rights reserved.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+</html>
