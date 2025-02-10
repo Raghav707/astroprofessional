@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
             formData.append("message", message);
 
             try {
-                const response = await fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", {
+                const response = await fetch("https://script.google.com/macros/s/AKfycbznIWNLF1vG294RaH_MTPHJmq4RORndlm8QDCubrCxWPfyMk2GHw2p29j1UoYVL3AEhnQ/exec", {
                     method: "POST",
                     body: formData
                 });
