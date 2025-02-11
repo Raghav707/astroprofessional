@@ -2520,6 +2520,55 @@ body.dark-mode .sidebar {
     transform: scale(1.05);
 }
 
+/* ===== Submit & Reset Button Styling ===== */
+
+.actions {
+    display: flex;
+    gap: 10px; /* Adds spacing between buttons */
+    justify-content: center; /* Centers buttons */
+    padding-top: 10px;
+}
+
+.actions li {
+    list-style: none; /* Removes bullet points */
+}
+
+/* Base Button Styles */
+.actions button {
+    font-size: 1em;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Submit Button */
+.actions .primary {
+    background: #FFBF00;
+    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.actions .primary:hover {
+    background: #d9a600;
+    transform: translateY(-2px); /* Lift effect */
+}
+
+/* Reset Button */
+.actions button[type="reset"] {
+    background: #666;
+    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.actions button[type="reset"]:hover {
+    background: #444;
+    transform: translateY(-2px);
+}
+
+
 /* ===== FADE-IN ANIMATION ===== */
 .fade-in {
     opacity: 0;
