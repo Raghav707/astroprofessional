@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("contact-form");
+    const responseMessage = document.getElementById("response-message");
 
     if (form) {
         form.addEventListener("submit", async function (e) {
@@ -9,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const email = document.getElementById("email").value.trim();
             const subject = document.getElementById("subject").value.trim();
             const message = document.getElementById("message").value.trim();
-            const responseMessage = document.getElementById("response-message");
 
             if (!name || !email || !message) {
                 responseMessage.innerHTML = "<span style='color: red;'>Please fill in all required fields.</span>";
@@ -17,24 +17,23 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             // ✅ Use URLSearchParams for Google Apps Script
-            const formData = new URLSearchParams();
-            formData.append("name", name);
-            formData.append("email", email);
-            formData.append("subject", subject);
-            formData.append("message", message);
+            const formData = new URLSearchParams({ name, email, subject, message });
 
             try {
-                const response = await fetch("https://script.google.com/macros/s/AKfycbznIWNLF1vG294RaH_MTPHJmq4RORndlm8QDCubrCxWPfyMk2GHw2p29j1UoYVL3AEhnQ/exec", {
-                    method: "POST",
-                    body: formData,
-                    headers: { "Content-Type": "application/x-www-form-urlencoded" }
-                });
+                const response = await fetch(
+                    "https://script.google.com/macros/s/AKfycbznIWNLF1vG294RaH_MTPHJmq4RORndlm8QDCubrCxWPfyMk2GHw2p29j1UoYVL3AEhnQ/exec", 
+                    {
+                        method: "POST",
+                        body: formData,
+                        headers: { "Content-Type": "application/x-www-form-urlencoded" }
+                    }
+                );
 
                 if (response.ok) {
                     responseMessage.innerHTML = "<span style='color: green;'>Message sent successfully!</span>";
                     form.reset();
                 } else {
-                    responseMessage.innerHTML = "<span style='color: red;'>Something went wrong. Please try again later.</span>";
+                    throw new Error("Failed to send message. Please try again later.");
                 }
             } catch (error) {
                 console.error("Error:", error);
@@ -47,26 +46,43 @@ document.addEventListener("DOMContentLoaded", function () {
     const topButton = document.createElement("button");
     topButton.innerHTML = "▲";
     topButton.id = "back-to-top";
-    topButton.style.position = "fixed";
-    topButton.style.bottom = "20px";
-    topButton.style.right = "20px";
-    topButton.style.backgroundColor = "#555";
-    topButton.style.color = "#fff";
-    topButton.style.border = "none";
-    topButton.style.padding = "10px 15px";
-    topButton.style.borderRadius = "5px";
-    topButton.style.cursor = "pointer";
-    topButton.style.display = "none";
-    topButton.style.fontSize = "20px";
+    Object.assign(topButton.style, {
+        position: "fixed",
+        bottom: "20px",
+        right: "20px",
+        backgroundColor: "#555",
+        color: "#fff",
+        border: "none",
+        padding: "10px 15px",
+        borderRadius: "5px",
+        cursor: "pointer",
+        display: "none",
+        fontSize: "20px",
+        transition: "opacity 0.3s ease-in-out"
+    });
     document.body.appendChild(topButton);
 
-    window.addEventListener("scroll", function () {
+    // ✅ Debounced Scroll Event for Performance
+    let lastScrollTop = 0;
+    const debounce = (func, wait = 100) => {
+        let timeout;
+        return (...args) => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func(...args), wait);
+        };
+    };
+
+    const handleScroll = debounce(() => {
         if (window.scrollY > 200) {
             topButton.style.display = "block";
+            topButton.style.opacity = "1";
         } else {
-            topButton.style.display = "none";
+            topButton.style.opacity = "0";
+            setTimeout(() => (topButton.style.display = "none"), 300);
         }
     });
+
+    window.addEventListener("scroll", handleScroll);
 
     topButton.addEventListener("click", function () {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -77,11 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-            } else {
-                entry.target.classList.remove("visible"); // Ensures animation replays
-            }
+            entry.target.classList.toggle("visible", entry.isIntersecting);
         });
     }, { threshold: 0.2 }); // Trigger when 20% of the element is visible
 
@@ -97,13 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     darkModeToggle.addEventListener("click", function () {
-        body.classList.toggle("dark-mode");
-
-        // Save preference
-        if (body.classList.contains("dark-mode")) {
-            localStorage.setItem("dark-mode", "enabled");
-        } else {
-            localStorage.setItem("dark-mode", "disabled");
-        }
+        const isEnabled = body.classList.toggle("dark-mode");
+        localStorage.setItem("dark-mode", isEnabled ? "enabled" : "disabled");
     });
 });
